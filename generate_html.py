@@ -405,6 +405,9 @@ def generate_html(output_filename="index.html"):
     <h1 class="page-title">AI 风格手册图片集</h1>
 """
 
+    import time
+    timestamp = int(time.time())
+
     html_content = ""
     for category, images in gallery_data.items():
         html_content += f"""
@@ -416,11 +419,11 @@ def generate_html(output_filename="index.html"):
             # Paths
             # Thumbnails for the grid
             thumb_path = f"{thumb_dir}/{category}/{img_file}"
-            thumb_url = urllib.parse.quote(thumb_path)
+            thumb_url = urllib.parse.quote(thumb_path) + f"?v={timestamp}"
             
             # Original for the lightbox
             original_path = f"{category}/{img_file}"
-            original_url = urllib.parse.quote(original_path)
+            original_url = urllib.parse.quote(original_path) + f"?v={timestamp}"
             
             img_name = os.path.splitext(img_file)[0]
             
